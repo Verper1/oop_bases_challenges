@@ -9,8 +9,16 @@
 
 
 class Product:
-    pass  # код писать тут
+    def __init__(self, name: str, description: str, price: int, weight: int):
+        self.name = name
+        self.description = description
+        self.price = price
+        self.weight = weight
+
+    def __str__(self):
+        return f"{apple.name} | {apple.description} | {apple.price} | {apple.weight}"
 
 
 if __name__ == '__main__':
-    pass  # код писать тут
+    apple = Product("Яблоко", "Зелёное яблоко", 20, 200)
+    print(apple)
