@@ -14,9 +14,16 @@ class BankAccount:
         self.owner_full_name = owner_full_name
         self.balance = balance
 
-    def increase_balance(self, income: float):
-        pass  # код писать тут
+    def increase_balance(self, income: float) -> float:
+        self.balance += income
+        return self.balance
+
+    def show_balance(self) -> float:
+        return self.balance
 
 
 if __name__ == '__main__':
-    pass  # код писать тут
+    spam: BankAccount = BankAccount("Олегов Олег Олегович", 250.32)
+    print(spam.show_balance())
+    spam.increase_balance(250.18)
+    print(spam.show_balance())
