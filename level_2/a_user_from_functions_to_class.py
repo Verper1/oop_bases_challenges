@@ -1,18 +1,18 @@
-""""
-У нас есть функции для работы с пользователем, но хочется работать с ним через класс.
+"""У нас есть функции для работы с пользователем, но хочется работать с ним через класс.
 
 Задания:
     1. Создайте класс User и перенесите всю логику работы с пользователем туда.
 """
 
-
-def make_username_capitalized(username: str):
-    return username.capitalize()
-
-
-def generate_short_user_description(username: str, user_id: int, name: str):
-    return f'User with id {user_id} has {username} username and {name} name'
-
-
 class User:
-    pass  # код писать тут
+    """Класс юзера для хранения инфы о человеке."""
+    @staticmethod
+    def make_username_capitalized(username: str) -> str:
+        """Возвращает строку с большой буквы."""
+        return username.capitalize()
+
+    @staticmethod
+    def generate_short_user_description(username: str, user_id: int, name: str) -> str:
+        """Создаёт краткое описание юзера."""
+        return f'User with id {user_id} has {username} username and {name} name'
+
