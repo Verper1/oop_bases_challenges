@@ -3,16 +3,21 @@
 Задания:
     1. Создайте класс User и перенесите всю логику работы с пользователем туда.
 """
+import dataclasses
 
+
+@dataclasses.dataclass(frozen=True, kw_only=True, slots=True)
 class User:
     """Класс юзера для хранения инфы о человеке."""
-    @staticmethod
-    def make_username_capitalized(username: str) -> str:
-        """Возвращает строку с большой буквы."""
-        return username.capitalize()
+    user_id: int
+    username: str
+    name: str
 
-    @staticmethod
-    def generate_short_user_description(username: str, user_id: int, name: str) -> str:
+    def make_username_capitalized(self) -> str:
+        """Возвращает строку с большой буквы."""
+        return self.username.capitalize()
+
+    def generate_short_user_description(self) -> str:
         """Создаёт краткое описание юзера."""
-        return f'User with id {user_id} has {username} username and {name} name'
+        return f'User with id {self.user_id} has {self.username} username and {self.name} name'
 

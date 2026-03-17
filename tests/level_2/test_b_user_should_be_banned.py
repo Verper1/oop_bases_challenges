@@ -1,5 +1,5 @@
 import pytest
-from level_2.b_user_should_be_banned import User, SURNAMES_TO_BAN
+from level_2.b_user_should_be_banned import User
 
 @pytest.mark.parametrize("test_name, test_surname, test_age, expected",
                          [
@@ -16,7 +16,6 @@ def test__user_should_be_banned__test_varios_params(test_name: str,
                                                     expected: str) -> None:
     user = User(name=test_name, surname=test_surname, age=test_age)  # Arrange
 
-    user_should_be_banned = user.user_should_be_banned(test_surname,
-                                                       SURNAMES_TO_BAN)  # Act
+    user_should_be_banned = user.user_should_be_banned()  # Act
 
     assert user_should_be_banned == expected  # Assert
