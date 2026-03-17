@@ -16,10 +16,9 @@ class User:
     surname: str
     age: int
 
-    @staticmethod
-    def user_should_be_banned(surname:str, SURNAMES_TO_BAN: list[str]) -> str:
+    def user_should_be_banned(self) -> str:
         """Проверяет есть ли юзер в списке забаненных и есть, то банит его."""
-        if surname in SURNAMES_TO_BAN:
+        if self.surname in SURNAMES_TO_BAN:
             return "Пользователь забанен."
         else:
             return "Пользователя нет в бан листе."
