@@ -1,5 +1,4 @@
-"""
-У нас есть класс TextProcessor, который содержит в себе методы для работы с текстом.
+"""У нас есть класс TextProcessor, который содержит в себе методы для работы с текстом.
 
 Задания:
     1. Создайте класс AdvancedTextProcessor, который будет наследником TextProcessor.
@@ -10,18 +9,36 @@
 
 
 class TextProcessor:
-    def __init__(self, text):
+    """Класс для логики работы обработки сообщений."""
+    def __init__(self, text: str) -> None:
+        """Инициализатор класса TextProcessor."""
         self.text = text
 
-    def to_upper(self):
+    def to_upper(self) -> str:
+        """Возвращает строку в верхнем регистре."""
         return self.text.upper()
 
-    def summarize(self):
+    def summarize(self) -> str:
+        """Возвращает кол-во символов в строке."""
         return f'Total text length: {len(self.text)}'
 
 
-# код писать тут
+class AdvancedTextProcessor(TextProcessor):
+    """Класс для умной логики работы обработки сообщений."""
+    def summarize(self) -> str:
+        """Возвращает кол-во символов и кол-во слов в строке."""
+        return f'Total text length: {len(self.text)}, total number of words in the text: {len(self.text.split())}.'
 
 
 if __name__ == '__main__':
-    pass  # код писать тут
+    # экземпляр первого класса
+    text_processor = TextProcessor("Hello world example")
+
+    print(text_processor.to_upper())
+    print(text_processor.summarize())
+
+    # экземпляр второго класса
+    advanced_text_processor = AdvancedTextProcessor("Hello world example")
+
+    print(advanced_text_processor.to_upper())
+    print(advanced_text_processor.summarize())
