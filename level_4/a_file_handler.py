@@ -14,6 +14,7 @@
 """
 import csv
 import json
+from pprint import pprint
 
 
 class FileHandler:
@@ -26,12 +27,27 @@ class FileHandler:
 
 
 class JSONHandler(FileHandler):
-    pass  # код писать тут
+    def read(self):
+        with open(self.filename, 'r') as file:
+            return json.load(file)
 
 
 class CSVHandler(FileHandler):
-    pass  # код писать тут
+    def read(self):
+        with open(self.filename, 'r', newline='') as file:
+            reader = csv.DictReader(file)
+            return list(reader)
 
 
 if __name__ == '__main__':
-    pass  # код писать тут
+    file_handler = FileHandler("data\\text.txt")
+    print("FileHandler")
+    print(file_handler.read(), "\n", "-----")
+
+    json_handler = JSONHandler("data\\recipes.json")
+    (print("JSONHandler"))
+    print(json.dumps(json_handler.read(), indent=4, ensure_ascii=False), "\n", "-----")
+
+    csv_handler = CSVHandler("data\\user_info.csv")
+    (print("CSVHandler"))
+    pprint(csv_handler.read())

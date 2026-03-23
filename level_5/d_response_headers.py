@@ -10,6 +10,7 @@
        для этого
     3. Создайте экземпляр класса CustomResponse и вызовите у него метод generate_headers, все ли хэдэры теперь на месте.
 """
+from pprint import pprint
 
 
 class BaseResponse:
@@ -34,7 +35,12 @@ class BaseHeadersMixin:
         return self.generate_base_headers()
 
 
-# код писать тут
+class CustomResponse(BaseHeadersMixin, BaseResponse):
+    def generate_headers(self) -> dict[str, int | str]:
+        headers  = super().generate_headers()
+        headers ['Content-Length'] = self.get_byte_content_length()
+        return headers
 
 if __name__ == '__main__':
-    pass  # код писать тут
+    inst = CustomResponse("some_content")
+    pprint(inst.generate_headers())

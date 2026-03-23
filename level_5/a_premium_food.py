@@ -5,7 +5,7 @@
     1. Нужно создать класс FoodProduct, который будет наследовать от классов Product и FoodProductMixin.
     2. У класса FoodProduct переопределить метод get_product_info, таким образом, чтобы если продукт премиальный, то в скобках
        в конце добавлялось слово Premium.
-       Например: Product title: Avocado, price: 12 (Premium)'
+       Например: Product title: Avocado, price: 12 (Premium)
     3. Создать экземпляр класс FoodProduct с ценой меньше 10 и вызвать у него метод get_product_info.
     4. Создать экземпляр класс FoodProduct с ценой больше 10 и вызвать у него метод get_product_info.
 """
@@ -25,6 +25,22 @@ class FoodProductMixin:
         return self.price > 10
 
 
+class FoodProduct(Product, FoodProductMixin):
+    def get_product_info(self) -> str:
+        """Возвращает строку с описанием товара с припиской Premium или без."""
+        if self.is_premium_food():
+            return super().get_product_info() + " (Premium)"
+
+        return super().get_product_info()
+
+
 if __name__ == '__main__':
-    pass  # код писать тут
+    # продукт дешевле 10
+    cheap_food = FoodProduct("Bread", 5.5)
+    print(cheap_food.get_product_info())
+
+    # продукт дороже 10
+    premium_food = FoodProduct("Steak", 15.0)
+    print(premium_food.get_product_info())
+
 
