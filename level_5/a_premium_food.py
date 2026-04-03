@@ -25,7 +25,7 @@ class FoodProductMixin:
         return self.price > 10
 
 
-class FoodProduct(Product, FoodProductMixin):
+class FoodProduct(FoodProductMixin, Product):
     def get_product_info(self) -> str:
         """Возвращает строку с описанием товара с припиской Premium или без."""
         if self.is_premium_food():
